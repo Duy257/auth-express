@@ -1,0 +1,35 @@
+{
+  "include": ["**/*", "src/middleware/permisstion-admin.ts"],
+
+  "compilerOptions": {
+    "module": "commonjs",
+
+    "declaration": true,
+
+    "esModuleInterop": true,
+
+    "removeComments": true,
+
+    "emitDecoratorMetadata": true,
+
+    "experimentalDecorators": true,
+
+    "target": "ES6",
+
+    "sourceMap": true,
+
+    "outDir": "./dist",
+
+    "baseUrl": "./",
+
+    "incremental": true,
+
+    "skipLibCheck": true,
+
+    "noUnusedParameters": false,
+
+    "noUnusedLocals": false
+  },
+
+  "exclude": ["node_modules", "dist"]
+}

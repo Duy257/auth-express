@@ -4,6 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { routes } from "./src/routes/routes";
 import connectDB from "./src/config/database";
+import passport from "passport";
+import session from "express-session";
+
 dotenv.config();
 
 const app = express();
@@ -11,6 +14,18 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+
+// Passport middleware
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  })
+)
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use("", routes);
 
 app.get("/", (req, res) => {

@@ -78,5 +78,19 @@ class AuthController {
       throw error;
     }
   }
+
+  async loginWithGoogle(req, res) {
+    const user: any = req.user;
+    let payload = {
+      name: user.name,
+      idUser: user.id,
+      role: user.role,
+    };
+    const generateToken = Token.sign({ payload });
+    return res.status(200).json({
+      ...generateToken,
+      idUser: user.id,
+    });
+  }
 }
 export default new AuthController();

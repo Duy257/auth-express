@@ -28,6 +28,8 @@ export interface IUser extends mongoose.Document {
   googleId?: string;
   isGoogleUser: boolean;
 
+  provider?: "google" | "facebook" | "apple";
+
   // Account Status
   isActive: boolean;
   lastLogin?: Date;
@@ -145,6 +147,13 @@ const userSchema = new mongoose.Schema<IUser>(
     isGoogleUser: {
       type: Boolean,
       default: false,
+    },
+    provider: {
+      type: String,
+      enum: ["google", "facebook", "apple"],
+      required: function (this: IUser) {
+        return this.isGoogleUser; // Provider required only for OAuth users
+      },
     },
 
     // Account Status
